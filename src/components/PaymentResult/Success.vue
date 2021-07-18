@@ -44,7 +44,6 @@ export default {
     } else {
       if (localStorage.isCaseBuy) {
         this.$router.push('cases');
-        localStorage.removeItem("isCaseBuy");
       } else {
         let account = this.$store.$shopapi.getAccountByRoute(this.$route);
 

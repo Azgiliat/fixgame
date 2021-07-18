@@ -309,11 +309,15 @@
             const vm = this;
             if (localStorage.isCaseBuy) {
                 this.$store.$caseapi.checkCount(this.caseId).then(function (data) {
-                    if (data.availableCount > 0)
-                        vm.initForUse(data.availableCount);
-                    else
-                        vm.initForBuy();
-                }).catch(() => vm.buttonState = 4);
+                  if (data.availableCount > 0)
+                    vm.initForUse(data.availableCount);
+                  else
+                    vm.initForBuy();
+                  localStorage.removeItem("isCaseBuy")
+                }).catch(() => {
+                  vm.buttonState = 4;
+                  localStorage.removeItem("isCaseBuy")
+                });
             } else
                 vm.initForBuy();
         }
