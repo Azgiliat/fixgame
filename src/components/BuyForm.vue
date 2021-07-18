@@ -278,7 +278,7 @@
                 }
                 this.$store.commit("setPaymentData", payData);
                 this.$store.$shopapi.tryToBuy(coupon, player, products)
-                    .then(response => window.open(response))
+                    .then(response => window.location = response)
                     .catch(err => {
                         if (err === 21) {
                             this.correctEmail = false;

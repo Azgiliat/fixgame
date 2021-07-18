@@ -14,7 +14,7 @@ export default [
     component: NewBlocks
   },
   {
-    path: '/result',
+    path: '/payment',
     name: 'result',
     component: PaymentResult,
     children: [
