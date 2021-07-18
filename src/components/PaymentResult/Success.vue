@@ -43,7 +43,7 @@ export default {
       this.resultFor = "case";
     } else {
       if (localStorage.isCaseBuy) {
-        this.$router.push('cases');
+        this.$router.push('/cases');
       } else {
         let account = this.$store.$shopapi.getAccountByRoute(this.$route);
 
