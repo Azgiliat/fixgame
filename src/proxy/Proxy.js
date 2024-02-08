@@ -11,7 +11,7 @@ export default class Proxy {
       data,
       url: `${this.path}${endpoint ? '/' : ''}${endpoint}`
     }
-
+    console.log(this.store.$submit(options))
     return this.store.$submit(options)
   }
 }

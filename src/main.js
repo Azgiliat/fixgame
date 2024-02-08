@@ -7,6 +7,9 @@ import VueMq from 'vue-mq'
 import '@/assets/css/typography.scss'
 //global classes like container etc
 import '@/assets/css/classes.scss'
+
+//newblocks
+import '@/assets/css/newblocks.scss'
 //building sprite
 const req = require.context('@/assets/icons', true)
 req.keys().forEach(function (key) {
@@ -24,6 +27,11 @@ import '@/assets/css/normalize.css'
 
 //import widths from css
 import {laptopWidth, desktopWidth} from '@/assets/css/vars.scss'
+//import lib(https://github.com/phegman/v-scroll-lock)
+import VScrollLock from 'v-scroll-lock'
+
+Vue.use(VScrollLock)
+
 Vue.use(VueMq, {
   breakpoints: { // default breakpoints - customize this
     mobile: parseInt(laptopWidth.replace('px', ''), 10),

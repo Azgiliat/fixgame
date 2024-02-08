@@ -2,11 +2,11 @@ import Proxy from './Proxy'
 
 export default class ProductsProxy extends Proxy {
   constructor (store) {
-    super(store, 'api/products')
+    super(store, 'apipayment')
   }
 
   getProducts () {
-    return this.submit({})
+      return this.submit({endpoint: "productGroups"})
   }
 
   checkAvailability (id) {
@@ -15,7 +15,7 @@ export default class ProductsProxy extends Proxy {
       data: {
         productId: id
       },
-      endpoint: 'availability'
+        endpoint: 'products/availability'
     })
   }
 
@@ -33,15 +33,15 @@ export default class ProductsProxy extends Proxy {
     }
 
     return this.submit({
-      method: 'post',
-      endpoint: 'checkout',
-      data
+        method: 'post',
+        endpoint: 'products/checkout',
+        data
     })
   }
 
   checkLastPurchases(orderId) {
     return this.submit({
-      endpoint: `lastPurchasedValues/${orderId}`
+        endpoint: `products/lastPurchasedValues/${orderId}`
     })
   }
 }

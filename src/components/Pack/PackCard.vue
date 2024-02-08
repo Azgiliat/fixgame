@@ -5,11 +5,11 @@
       <img class="pack-card__image" :src="require(`st/images/pack/${type}.png`)"/>
       <div class="pack-card__info info">
         <p class="info__name">
-          {{ info.name }}
+          {{ product.displayName }}
         </p>
         <div class="info__buy-block">
-          <p class="info__price">{{info.price}} ₽<span class="info__full-price">{{ Math.round(info.price * 1.4) }} ₽</span></p>
-          <SimpleButton @click="$emit('buyPack', type)">
+          <p class="info__price">{{product.price}} ₽<span class="info__full-price">{{ product.prePrice }} ₽</span></p>
+          <SimpleButton @click="openForm">
             Купить
           </SimpleButton>
         </div>
@@ -25,12 +25,7 @@ import { mineGradient, goldGradient, premiumGradient } from '@/assets/css/vars.s
 export default {
   name: 'PackCard',
   props: {
-    // type: {
-    //   type: String,
-    //   require: false,
-    //   default: 'mine'
-    // },
-    info: {
+    group: {
       type: Object,
       require: false,
       default: () => ({
@@ -38,11 +33,16 @@ export default {
       })
     }
   },
+  data: function () {
+    return {
+      product: this.group.products[0]
+    }
+  },
   components: {
     SimpleButton
   },
   computed: {
-    backGradient () {
+    backGradient() {
       switch (this.type) {
         case 'mine':
           return mineGradient
@@ -55,16 +55,22 @@ export default {
       }
     },
     type() {
-      switch (this.info.id) {
-        case 1:
+      switch (this.product.category) {
+        case "mc":
           return 'mine'
-        case 2:
+        case "mc-fullprem":
           return 'premium'
-        case 3:
+        case "mc-ezprem":
           return 'gold'
         default:
           return 'mine'
       }
+    }
+  },
+  methods: {
+    openForm: function () {
+      this.$store.commit("packs/setProductToBuy", this.group.id);
+      this.$store.commit("packs/openForm");
     }
   }
 }

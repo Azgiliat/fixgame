@@ -1,6 +1,8 @@
 export default function () {
   return {
     loading: false,
-    packs: []
+    packs: [],
+    productToBuyId: -1,
+    openForm: false
   }
 }

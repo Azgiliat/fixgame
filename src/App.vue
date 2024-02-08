@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app">
     <Header/>
-    <router-view class="app__body"/>
+    <Main class="app__body"/>
     <Footer/>
     <div id="vk_community_messages"></div>
   </div>
@@ -10,10 +10,12 @@
 <script>
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import Main from "./pages/Main";
 
 export default {
   name: 'App',
   components: {
+    Main,
     Header,
     Footer
   }

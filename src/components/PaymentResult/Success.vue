@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+
 import Copy from '@/components/UI/Copy'
 
 export default {
@@ -25,21 +25,36 @@ export default {
   components: {
     Copy
   },
-  data() {
+  data: function () {
     return {
-      results: []
+      resultFor: "shop"
     }
   },
-  methods: {
-    ...mapActions('buy', {
-      checkLastPurchases: 'checkLastPurchases'
-    })
+  computed: {
+    results: function () {
+      if (this.resultFor === "shop")
+        return this.$store.state.payment.purchases;
+      else
+        return this.$store.state.cases.wonValues;
+    }
   },
-  beforeMount() {
-    this.checkLastPurchases(this.$route.query.account.substring(5))
-    .then(res => {
-      this.results = res.values
-    })
+  created: function () {
+    if (this.$route.params.from !== undefined) {
+      this.resultFor = "case";
+    } else {
+      if (localStorage.isCaseBuy) {
+        this.$router.push('/cases');
+      } else {
+        let account = this.$store.$shopapi.getAccountByRoute(this.$route);
+
+        if (account !== undefined) {
+          this.$store.dispatch("getPurchases", account)
+          //todo протестить оплату и убрать коммент ниже
+          //this.$store.commit("testSetPurchases");
+        } else
+          this.$router.push('/')
+      }
+    }
   }
 }
 </script>

@@ -31,6 +31,8 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
+  margin-bottom: 25px;
+
   &__links {
     margin-bottom: 20px;
     display: flex;

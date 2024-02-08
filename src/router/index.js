@@ -8,3 +8,13 @@ export default new VueRouter({
   routes,
   mode: 'history'
 })
+
+
+// routes.afterEach(to => {
+//   if (to.name == 'main') {
+//
+//
+//     alert(1)
+//
+//   }
+// })

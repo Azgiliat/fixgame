@@ -1,14 +1,20 @@
-import Main from '@/pages/Main'
+import Shop from "../pages/Shop";
 import PaymentResult from '@/pages/PaymentResult'
+import NewBlocks from '@/pages/NewBlocks'
 
 export default [
   {
     path: '/',
     name: 'main',
-    component: Main
+    component: Shop,
   },
   {
-    path: '/result',
+    path: '/case',
+    name: 'Case',
+    component: NewBlocks
+  },
+  {
+    path: '/payment',
     name: 'result',
     component: PaymentResult,
     children: [
@@ -25,3 +31,5 @@ export default [
     ]
   }
 ]
+
+
